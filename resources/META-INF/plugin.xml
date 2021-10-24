@@ -23,7 +23,7 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
+        <toolWindow id="notewindow" factoryClass="com.simon.codenotes.window.NoteListWindowFactory" anchor="right" icon="/img/logo.png"></toolWindow>
     </extensions>
 
     <actions>

@@ -3,6 +3,7 @@ package com.simon.codenotes.dialog;
 import com.intellij.openapi.ui.DialogWrapper;
 import com.intellij.ui.EditorTextField;
 import com.simon.codenotes.data.DataCenter;
+import com.simon.codenotes.data.DataConvert;
 import com.simon.codenotes.data.NoteData;
 import org.jetbrains.annotations.Nullable;
 
@@ -50,7 +51,7 @@ public class AddNoteDialog extends DialogWrapper {
             String fileType = DataCenter.FILE_NAME.substring(DataCenter.FILE_NAME.lastIndexOf(".")+1);//获取后缀名
             NoteData noteData = new NoteData(title,mark, DataCenter.FILE_NAME,DataCenter.SELECT_TEXT,fileType);
             DataCenter.NOTE_LIST.add(noteData);
-            System.out.println(DataCenter.NOTE_LIST);
+            DataCenter.TABLE_MODEL.addRow(DataConvert.convert(noteData));
         });
         panel.add(button);
         return panel;
