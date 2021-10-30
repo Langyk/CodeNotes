@@ -1,19 +1,20 @@
 package com.simon.codenotes.window;
 
 import com.intellij.openapi.fileChooser.FileChooser;
-import com.intellij.openapi.fileChooser.FileChooserDescriptor;
 import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.MessageDialogBuilder;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.wm.ToolWindow;
 import com.simon.codenotes.data.DataCenter;
-import org.jetbrains.annotations.NotNull;
+import com.simon.codenotes.processor.DefaultSourceNoteData;
+import com.simon.codenotes.processor.MDFreeMarkProcessor;
+import com.simon.codenotes.processor.Processor;
+
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.security.MessageDigest;
 
 /**
  * @Author: Simon Lang
@@ -50,8 +51,12 @@ public class NoteListWindow {
                 if(virtualFile != null){
                     String path = virtualFile.getPath();
                     String fileFullPath = path + "/" + fileName;
-
-
+                    Processor processor = new MDFreeMarkProcessor();
+                    try {
+                        processor.process(new DefaultSourceNoteData(fileFullPath,topic,DataCenter.NOTE_LIST));
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
                 }
 
             }

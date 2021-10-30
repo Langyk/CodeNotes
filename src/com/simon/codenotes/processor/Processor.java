@@ -10,5 +10,5 @@ import java.io.IOException;
  * @Date: 2021/10/24 22:12
  */
 public interface Processor {
-    public void process(SourceNoteData sourceNoteData) throws IOException, TemplateException;
+    public void process(SourceNoteData sourceNoteData) throws Exception;
 }
